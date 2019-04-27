@@ -1,0 +1,22 @@
+{
+"responseConfigMap" :
+        {
+                "0":{ "npciResponseCode":"00"},
+                "999":{ "npciResponseCode":"00"},
+                "2999":{ "npciResponseCode":"00"},
+                "3000":{ "npciResponseCode":"00"},
+                "10000":{ "npciResponseCode":"00"},
+                "1001":{ "npciResponseCode":"00"},
+                "100":{ "npciResponseCode":"00"},
+                "1000":{ "npciResponseCode":"00"},
+                "150":{ "npciResponseCode":"DS"},
+                "2000":{ "npciResponseCode":"91"},
+                "2500":{ "npciResponseCode":"DD"},
+                "4000":{ "npciResponseCode":"VT"},
+                "350":{ "npciResponseCode":"UH"},
+                "4001":{ "npciResponseCode":"M3"},
+                "3001":{ "npciResponseCode":"00"},
+                "200":{ "npciResponseCode":"91"},
+                "400":{ "npciResponseCode":"M3"}
+        }
+}

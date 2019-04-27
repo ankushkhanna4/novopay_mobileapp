@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Failed suite [Default suite]]">
+  <test name="Default test(failed)(failed)">
+    <classes>
+      <class name="tests.FlowMapper">
+        <methods>
+          <include name="flowMapperTest" invocation-numbers="0 1 2 3 4 5 6"/>
+          <include name="result"/>
+          <include name="generateIniFile"/>
+        </methods>
+      </class> <!-- tests.FlowMapper -->
+    </classes>
+  </test> <!-- Default test(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Default suite]] -->
