@@ -26,6 +26,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -108,13 +109,14 @@ public class BasePage extends JavaUtils {
 			capabilities.setCapability(MobileCapabilityType.VERSION, dataMap.get("ANDROIDVERSION"));
 			capabilities.setCapability("appPackage", "in.novopay.merchant");
 			capabilities.setCapability("appActivity", ".ui.activities.SplashScreenActivity");
-//			capabilities.setCapability("appPackage", "com.climate.farmrise");
-//			capabilities.setCapability("appActivity", "com.climate.farmrise.SplashScreen");
+			capabilities.setCapability("newCommandTimeout", 216000);
 			capabilities.setCapability("noReset", "true");
-			
+			capabilities.setCapability("skipDeviceInitialization", true);
+			capabilities.setCapability("skipServerInstallation", true);
+
 			mdriver = new AndroidDriver<MobileElement>(new URL("http://" + server + ":" + port + "/wd/hub"),
 					capabilities);
-			
+
 			Log.info("Launched Mobile app successfully");
 		} catch (Exception e2) {
 			e2.printStackTrace();
@@ -148,7 +150,7 @@ public class BasePage extends JavaUtils {
 			ChromeOptions options = new ChromeOptions();
 			options.setExperimentalOption("prefs", prefs);
 			wdriver = new ChromeDriver(options);
-			
+
 		}
 		String url = configProperties.get("webAppUrl");
 		wdriver.get(url);
@@ -199,6 +201,89 @@ public class BasePage extends JavaUtils {
 		WebDriverWait wait = new WebDriverWait(mdriver, 20);
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 
+	}
+
+	/**
+	 * Wait until web element is visible
+	 */
+	public void waitUntilElementIsVisible(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(mdriver, 30);
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
+
+	/**
+	 * Wait until web element is visible for Fino
+	 */
+	public void waitUntilElementIsVisibleForFino(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(mdriver, 90);
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
+
+	/**
+	 * Wait until web element is invisible
+	 */
+	public void waitUntilElementIsInvisible(String xpath) {
+		WebDriverWait wait = new WebDriverWait(mdriver, 30);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
+	}
+
+	/**
+	 * Wait until web element is clickable and click the element
+	 */
+	public void waitUntilElementIsClickableAndClickTheElement(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(mdriver, 30);
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+		clickElement(element);
+	}
+
+	/**
+	 * Wait until web element is clickable and click the element for Fino
+	 */
+	public void waitUntilElementIsClickableForFinoAndClickTheElement(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(mdriver, 90);
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+		clickElement(element);
+	}
+
+	/**
+	 * Wait until web element is clickable
+	 */
+	public void waitUntilElementIsClickable(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(mdriver, 30);
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+
+	/**
+	 * Wait until web element is clickable for Fino
+	 */
+	public void waitUntilElementIsClickableForFino(WebElement element) {
+		WebDriverWait wait = new WebDriverWait(mdriver, 90);
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+
+	// click on invisible WebElement (or forcefully)
+	public void clickElement(WebElement element) {
+		try {
+			element.click();
+		} catch (Exception e) {
+			clickInvisibleElement(element);
+		}
+	}
+
+	public void scrollElementDown(WebElement scrollbar, WebElement elementToClick) throws InterruptedException {
+//		Actions dragger = new Actions(wdriver);
+		int numberOfPixelsToDragTheScrollbarDown = 50;
+		while (true) {
+			try {
+				// this causes a gradual drag of the scroll bar downwards, 10 units at a time
+//				dragger.moveToElement(scrollbar).clickAndHold().moveByOffset(0, numberOfPixelsToDragTheScrollbarDown)
+//						.release().perform();
+				waitUntilElementIsClickableAndClickTheElement(elementToClick);
+				break;
+			} catch (Exception e1) {
+				numberOfPixelsToDragTheScrollbarDown = numberOfPixelsToDragTheScrollbarDown + 10;
+			}
+		}
 	}
 
 	/**
@@ -286,8 +371,7 @@ public class BasePage extends JavaUtils {
 	/**
 	 * Swipe vertical in mobile
 	 * 
-	 * @param yStart,
-	 *            yEnd, totalSwipes
+	 * @param yStart, yEnd, totalSwipes
 	 */
 	public void swipeVertical(int yStart, int yEnd, int totalSwipes) {
 
@@ -303,8 +387,7 @@ public class BasePage extends JavaUtils {
 	/**
 	 * Swipe horizontal in mobile
 	 * 
-	 * @param xStart,
-	 *            xEnd, totalSwipes
+	 * @param xStart, xEnd, totalSwipes
 	 */
 	public void swipehorizontal(int xStart, int xEnd, int totalSwipes) {
 		try {
@@ -337,20 +420,19 @@ public class BasePage extends JavaUtils {
 	/**
 	 * Select drop down value
 	 * 
-	 * @param element,
-	 *            text
+	 * @param element, text
 	 */
-	
+
 	public void sendText(MobileElement el, String text) {
 		AndroidElement ae = (AndroidElement) el;
 		ae.setValue(text);
 		try {
 			mdriver.hideKeyboard();
-		}catch(Exception e) {
+		} catch (Exception e) {
 			System.err.println("Keyboard not visible");
 		}
 	}
-	
+
 	public void selectDropdown(WebElement element, String text) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(wdriver, 20);
 		wait.until(ExpectedConditions.visibilityOf(element));
@@ -362,8 +444,7 @@ public class BasePage extends JavaUtils {
 	/**
 	 * Select drop down value, here checking option values
 	 * 
-	 * @param element,
-	 *            value
+	 * @param element, value
 	 */
 	public void selectDropdown2(WebElement element, String value) {
 
@@ -408,8 +489,7 @@ public class BasePage extends JavaUtils {
 
 	/**
 	 * @return string from float value
-	 * @param String
-	 *            value
+	 * @param String value
 	 */
 	public String convertfloat_to_string(String ben) {
 		float d = Float.parseFloat(ben);
@@ -511,8 +591,7 @@ public class BasePage extends JavaUtils {
 	/**
 	 * This method will check for next element with polling time
 	 * 
-	 * @param webElement,
-	 *            waitsec, pollsec
+	 * @param webElement, waitsec, pollsec
 	 */
 	public void waitandCheckfortheElement(WebElement wb, int waitsec, int pollsec) {
 		new FluentWait<WebElement>(wb).withTimeout(waitsec, TimeUnit.SECONDS).pollingEvery(pollsec, TimeUnit.SECONDS)
@@ -522,8 +601,7 @@ public class BasePage extends JavaUtils {
 	/**
 	 * To send keys in text box on mobile
 	 * 
-	 * @param MobileElement,
-	 *            value
+	 * @param MobileElement, value
 	 */
 	public void sendKeys(MobileElement element, String value) {
 		waitUntilElementAppears(element);
@@ -545,8 +623,7 @@ public class BasePage extends JavaUtils {
 	/**
 	 * To send keys in text box and hide keyboard on mobile
 	 * 
-	 * @param MobileElement,
-	 *            value
+	 * @param MobileElement, value
 	 */
 	@SuppressWarnings("rawtypes")
 	public void sendKeysTap(MobileElement element, String value) {
@@ -560,25 +637,18 @@ public class BasePage extends JavaUtils {
 		mdriver.hideKeyboard();
 
 	}
-	
-	
 
 	/**
 	 * swipe vertical till element visible in mobile
 	 * 
-	 * @param yStart,
-	 *            yEnd, MobileElement
+	 * @param yStart, yEnd, MobileElement
 	 */
 	public void swipeVerticalUntilElementIsVisible(double yStart, double yEnd, MobileElement element) {
 
 		mdriver.context("NATIVE_APP");
 		Dimension size = mdriver.manage().window().getSize();
-		// System.out.println("width : " + (size.width * .85) + " yStart : " +
-		// (int) (size.height * yStart) + " yEnd : "
-		// + (int) (size.height * yEnd));
 		for (int i = 1; i <= 10; i++) {
 			try {
-				// mdriver.swipe(600, yStart, 600, yEnd, 1);
 				mdriver.swipe((int) (size.width * .85), (int) (size.height * yStart), (int) (size.width * .85),
 						(int) (size.height * yEnd), 2000);
 				element.isDisplayed();
@@ -593,8 +663,7 @@ public class BasePage extends JavaUtils {
 	/**
 	 * Swipe vertical in mobile
 	 * 
-	 * @param yStart,
-	 *            yEnd, totalSwipes
+	 * @param yStart, yEnd, totalSwipes
 	 */
 	public void swipeVertical(double yStart, double yEnd, int totalSwipes) {
 
@@ -695,7 +764,7 @@ public class BasePage extends JavaUtils {
 			try {
 				mdriver.swipe((int) (size.width * xStart), (int) (size.height * .30), (int) (size.width * xEnd),
 						(int) (size.height * .30), 800);
-				
+
 			} catch (Exception e) {
 			}
 		}
@@ -773,8 +842,7 @@ public class BasePage extends JavaUtils {
 	 * This method will Capture screenshot on failed test script, save in
 	 * Screenshots folder
 	 * 
-	 * @param result,
-	 *            Tcid
+	 * @param result, Tcid
 	 */
 	public void captureScreenshotOnFailedTest(ITestResult result, String Tcid) {
 		if (ITestResult.FAILURE == result.getStatus()) {
@@ -788,5 +856,4 @@ public class BasePage extends JavaUtils {
 			}
 		}
 	}
-
 }

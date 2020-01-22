@@ -374,7 +374,7 @@ public class JavaUtils extends LoadableComponent {
 		Ini ini;
 		try {
 			ini = new Ini(new File("./data.ini"));
-			if (mobileNum.equalsIgnoreCase("RBLRetailerMobNum") || mobileNum.equalsIgnoreCase("AXISRetailerMobNum")) {
+			if (mobileNum.equalsIgnoreCase("RetailerMobNum")) {
 				ini.put("MobileNumber", "GetRetailerMobNum", ini.get("MobileNumber", mobileNum));
 				ini.store();
 			}
@@ -1564,6 +1564,58 @@ public class JavaUtils extends LoadableComponent {
 		int restDigits = rand.nextInt((maxR - minR) + 1) + minR;
 		String mobileNum = Integer.toString(firstDigit) + Integer.toString(restDigits);
 		return mobileNum;
+	}
+
+	// Remove rupee symbol and comma from the string
+	public String replaceSymbols(String value) {
+		String editedElement = value.replaceAll("₹", "").replaceAll(",", "").trim();
+		return editedElement;
+	}
+
+	// Get mobile number from Ini file
+	public String mobileNumFromIni() {
+		return getLoginMobileFromIni("RetailerMobNum");
+	}
+
+	public String getWalletBalanceFromIni(String wallet, String balance) {
+		Ini ini;
+		try {
+			ini = new Ini(new File("./data.ini"));
+			if (wallet.equalsIgnoreCase("retailer")) {
+				ini.put("RetailerData", "RetailerWalletBalance", balance);
+				ini.store();
+			} else if (wallet.equalsIgnoreCase("cashout")) {
+				ini.put("RetailerData", "CashoutWalletBalance", balance);
+				ini.store();
+			} else if (wallet.equalsIgnoreCase("GetRetailer")) {
+				return ini.get("RetailerData", "RetailerWalletBalance");
+			} else if (wallet.equalsIgnoreCase("GetCashout")) {
+				return ini.get("RetailerData", "CashoutWalletBalance");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public double roundTo2Decimals(double value) {
+		return Math.round(value * 100.0) / 100.0;
+	}
+
+	public String getWalletFromIni(String type, String wallet) {
+		Ini ini;
+		try {
+			ini = new Ini(new File("./data.ini"));
+			if (type.equalsIgnoreCase("StoreWallet")) {
+				ini.put("Wallet", "Wallet", wallet);
+				ini.store();
+			} else if (type.equalsIgnoreCase("GetWallet")) {
+				return ini.get("Wallet", "Wallet");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public void enter() throws AWTException {

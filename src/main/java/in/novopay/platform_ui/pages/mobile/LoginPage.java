@@ -85,7 +85,7 @@ public class LoginPage extends BasePage {
 	@AndroidFindBy(id = "in.novopay.merchant:id/refresh_balance")
 	MobileElement refreshButton;
 
-	@AndroidFindBy(id = "in.novopay.merchant:id/your_current_balance_label")
+	@AndroidFindBy(id = "in.novopay.merchant:id/textViewBalance")
 	MobileElement balanceLabel;
 
 	public void login(Map<String, String> usrData) throws Exception {
@@ -111,7 +111,7 @@ public class LoginPage extends BasePage {
 			wait.until(ExpectedConditions.visibilityOf(mobNumTextField));
 			mobNumTextField.clear();
 			Log.info("entering mobile number");
-			if (mobNumFromSheet.startsWith("RBL") || mobNumFromSheet.startsWith("AXIS")) {
+			if (mobNumFromSheet.equalsIgnoreCase("RetailerMobNum")) {
 				sendText(mobNumTextField, readValue(getLoginMobileFromIni(mobNumFromSheet)));
 			} else {
 				sendText(mobNumTextField, readValue(mobNumFromSheet));
@@ -123,7 +123,7 @@ public class LoginPage extends BasePage {
 				tapMPINBtn(usrData.get("MPIN"));
 				submitMPINBtn.click();
 				Log.info("MPIN submitted");
-				if (mobNumFromSheet.startsWith("RBL") || mobNumFromSheet.startsWith("AXIS")) {
+				if (mobNumFromSheet.equalsIgnoreCase("RetailerMobNum")) {
 					mobNumFromSheet = getLoginMobileFromIni(mobNumFromSheet);
 				}
 				if (mobNumValidation(mobNumFromSheet).equalsIgnoreCase("valid")

@@ -41,6 +41,9 @@ public class HomePage extends BasePage {
 	@AndroidFindBy(id = "in.novopay.merchant:id/textViewBalance")
 	MobileElement retailerWalletBalance;
 
+	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'.')]")
+	MobileElement retailerWalletBalance1;
+
 	@AndroidFindBy(xpath = "//android.widget.TextView[contains(@text,'cash to account')]/parent::android.widget.LinearLayout")
 	MobileElement cashToAccount;
 
@@ -113,7 +116,6 @@ public class HomePage extends BasePage {
 				wait.until(ExpectedConditions.elementToBeClickable(fcmScreen));
 				Log.info("FCM screen displayed");
 			} else {
-
 				clickIcon(usrData);
 			}
 		} catch (Exception e) {
@@ -127,16 +129,11 @@ public class HomePage extends BasePage {
 	public void displayWalletBalance() throws ClassNotFoundException, InterruptedException {
 		String walletBalance = dbUtils.getWalletBalance(mobileNumFromIni(), "retailer");
 		String walletBal = walletBalance.substring(0, walletBalance.length() - 4);
-		wait.until(ExpectedConditions.elementToBeClickable(retailerWalletBalance));
-		String initialWalletBal = replaceSymbols(retailerWalletBalance.getText());
+		wait.until(ExpectedConditions.elementToBeClickable(retailerWalletBalance1));
+		String initialWalletBal = replaceSymbols(retailerWalletBalance1.getText());
 
-		// Compare wallet balance shown in WebApp to DB
-		try {
-			Assert.assertEquals(initialWalletBal, walletBal);
-		} catch (Exception e) {
-			refreshBalance();
-			Assert.assertEquals(initialWalletBal, walletBal);
-		}
+		Assert.assertEquals(initialWalletBal, walletBal);
+		System.out.println("Balance asserted successfully");
 		getBalanceFromIni("Store", "retailer", initialWalletBal);
 		Log.info("Retailer Balance: " + initialWalletBal);
 		getBalanceFromIni("Store", "cashout", dbUtils.getWalletBalance(mobileNumFromIni(), "cashout"));
@@ -186,6 +183,7 @@ public class HomePage extends BasePage {
 				String homeFeatureName = "in.novopay.merchant:id/" + usrData.get("HOMEFEATURE");
 				WebElement homeFeature = mdriver.findElement(By.id(homeFeatureName));
 				homeFeature.click();
+				System.out.println(usrData.get("HOMEFEATURE") + " feature clicked");
 				while (true) {
 					try {
 						String featureXpath = "//android.widget.TextView[contains(@text,'"

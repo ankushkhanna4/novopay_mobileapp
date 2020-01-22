@@ -22,6 +22,7 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import in.novopay.platform_ui.utils.DBUtils;
 import in.novopay.platform_ui.utils.JavaUtils;
 
 import io.appium.java_client.MobileElement;
@@ -33,6 +34,7 @@ public class FlowMapper {
 	public WebDriver wdriver;
 	private String sheetName = "FLOWMAPPER";
 	private JavaUtils javaUtils = new JavaUtils();
+	private DBUtils dbUtils = new DBUtils();
 	private Map<String, String> usrData;
 	private Object obj;
 	private String errMsg;
@@ -53,6 +55,11 @@ public class FlowMapper {
 	public void flowMapperTest(HashMap<String, String> usrData) throws Throwable {
 		this.usrData = usrData;
 		System.out.println("Excuting flow: " + usrData.get("TCID"));
+		if (!usrData.get("CONTRACT").equalsIgnoreCase("-")) {
+			dbUtils.modifyContract(usrData.get("CONTRACT"), javaUtils.getLoginMobileFromIni("RetailerMobNum"));
+		}
+		javaUtils.getWalletFromIni("StoreWallet", usrData.get("WALLET"));
+		
 		for (String flowTestID : flows) {
 			if ((!usrData.get(flowTestID).equalsIgnoreCase("SKIP")) && (!usrData.get(flowTestID).isEmpty())) {
 				testCaseID = usrData.get(flowTestID);

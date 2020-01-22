@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>2/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>2/0/0</td>
 </tr><tr>
-<td>Started on:</td><td>Thu Apr 04 23:49:39 IST 2019</td>
+<td>Started on:</td><td>Mon Jan 20 17:23:57 IST 2020</td>
 </tr>
-<tr><td>Total time:</td><td>89 seconds (89609 ms)</td>
+<tr><td>Total time:</td><td>127 seconds (127142 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,96 +67,6 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-failed'>
-<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
-<tr><td><b>Test method</b></td>
-<td width="30%"><b>Exception</b></td>
-<td width="10%"><b>Time (seconds)</b></td>
-<td><b>Instance</b></td>
-</tr>
-<tr>
-<td title='tests.FlowMapper.flowMapperTest()'><b>flowMapperTest</b><br>Test class: tests.FlowMapper<br>Parameters: {PARTNER=RBL, STEP10=, PRIORITY=P2, STEP02=RBLMoneyTransferTest_067, STEP13=, TCID=FlowMapper_074, STEP03=, STEP11=, STEP01=HomeTest_004, STEP12=, STEP06=, STEP07=, STEP04=, STEP05=, RUNMODE=Yes, DESCRIPTION=Save as PDF in Success screen, TESTTYPE=Positive, STEP08=, STEP09=, FEATURE=Money Transfer}</td>
-<td><div><pre>java.lang.AssertionError: expected [984935.50] but found [989957.00]
-	at org.testng.Assert.fail(Assert.java:94)
-	at org.testng.Assert.failNotEquals(Assert.java:494)
-	at org.testng.Assert.assertEquals(Assert.java:123)
-	at org.testng.Assert.assertEquals(Assert.java:176)
-	at org.testng.Assert.assertEquals(Assert.java:186)
-	at in.novopay.platform_ui.pages.mobile.HomePage.displayWalletBalance(HomePage.java:135)
-	at in.novopay.platform_ui.pages.mobile.HomePage.home(HomePage.java:108)
-	at tests.ui.HomeTest.homeTest(HomeTest.java:65)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at tests.FlowMapper.flowMapperTest(FlowMapper.java:101)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:254)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div><a href='#' onClick='toggleBox("stack-trace513279161", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace513279161'><pre>java.lang.AssertionError: expected [984935.50] but found [989957.00]
-	at org.testng.Assert.fail(Assert.java:94)
-	at org.testng.Assert.failNotEquals(Assert.java:494)
-	at org.testng.Assert.assertEquals(Assert.java:123)
-	at org.testng.Assert.assertEquals(Assert.java:176)
-	at org.testng.Assert.assertEquals(Assert.java:186)
-	at in.novopay.platform_ui.pages.mobile.HomePage.displayWalletBalance(HomePage.java:135)
-	at in.novopay.platform_ui.pages.mobile.HomePage.home(HomePage.java:108)
-	at tests.ui.HomeTest.homeTest(HomeTest.java:65)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at tests.FlowMapper.flowMapperTest(FlowMapper.java:101)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:84)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:714)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:901)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1231)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:127)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:111)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:617)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:348)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:343)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:305)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:254)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div></td>
-<td>6</td>
-<td>tests.FlowMapper@73ad2d6</td></tr>
-</table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
@@ -165,15 +75,15 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='tests.FlowMapper.flowMapperTest()'><b>flowMapperTest</b><br>Test class: tests.FlowMapper<br>Parameters: {PARTNER=, STEP10=, PRIORITY=P, STEP02=, STEP13=, TCID=FlowMapper_000, STEP03=, STEP11=, STEP01=EnvTest_QA2, STEP12=, STEP06=, STEP07=, STEP04=, STEP05=, RUNMODE=Yes, DESCRIPTION=Set environment to run test cases on, TESTTYPE=no-check, STEP08=, STEP09=, FEATURE=}</td>
+<td title='tests.FlowMapper.flowMapperTest()'><b>flowMapperTest</b><br>Test class: tests.FlowMapper<br>Parameters: {CONTRACT=-, STEP10=, PRIORITY=P, STEP02=, STEP13=, TCID=FlowMapper_000, STEP03=, STEP11=, STEP01=EnvTest_QA1, STEP12=, STEP06=, STEP07=, STEP04=, STEP05=, RUNMODE=Yes, WALLET=-, DESCRIPTION=Set environment to run test cases on, TESTTYPE=no-check, STEP08=, STEP09=, FEATURE=}</td>
 <td></td>
-<td>13</td>
-<td>tests.FlowMapper@73ad2d6</td></tr>
+<td>20</td>
+<td>tests.FlowMapper@56620197</td></tr>
 <tr>
-<td title='tests.FlowMapper.flowMapperTest()'><b>flowMapperTest</b><br>Test class: tests.FlowMapper<br>Parameters: {PARTNER=RBL, STEP10=, PRIORITY=P2, STEP02=RBLMoneyTransferTest_065, STEP13=, TCID=FlowMapper_073, STEP03=, STEP11=, STEP01=HomeTest_004, STEP12=, STEP06=, STEP07=, STEP04=, STEP05=, RUNMODE=Yes, DESCRIPTION=Process in Background, TESTTYPE=Positive, STEP08=, STEP09=, FEATURE=Money Transfer}</td>
+<td title='tests.FlowMapper.flowMapperTest()'><b>flowMapperTest</b><br>Test class: tests.FlowMapper<br>Parameters: {CONTRACT=RBL, STEP10=, PRIORITY=P2, STEP02=RBLMoneyTransferTest_002, STEP13=, TCID=FlowMapper_018, STEP03=HomeTest_004, STEP11=, STEP01=HomeTest_004, STEP12=, STEP06=, STEP07=, STEP04=RBLMoneyTransferTest_005, STEP05=, RUNMODE=Yes, WALLET=Main, DESCRIPTION=Existing Remitter -> New Beneficiary -> Bene Addition during Money Transfer, TESTTYPE=Positive, STEP08=, STEP09=, FEATURE=Money Transfer}</td>
 <td></td>
-<td>68</td>
-<td>tests.FlowMapper@73ad2d6</td></tr>
+<td>104</td>
+<td>tests.FlowMapper@56620197</td></tr>
 </table><p>
 </body>
 </html>

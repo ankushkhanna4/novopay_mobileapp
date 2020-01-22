@@ -691,7 +691,7 @@ public class DBUtils extends JavaUtils {
 		}
 		return null;
 	}
-	
+
 	public String smsNum1() throws ClassNotFoundException {
 		try {
 			conn = createConnection(configProperties.get("smsLog"));
@@ -707,7 +707,7 @@ public class DBUtils extends JavaUtils {
 		}
 		return null;
 	}
-	
+
 	public String smsNum2() throws ClassNotFoundException {
 		try {
 			conn = createConnection(configProperties.get("smsLog"));
@@ -723,7 +723,7 @@ public class DBUtils extends JavaUtils {
 		}
 		return null;
 	}
-	
+
 	public String beneAccountPAN() throws ClassNotFoundException {
 		try {
 			conn = createConnection(configProperties.get("npActor"));
@@ -1439,5 +1439,71 @@ public class DBUtils extends JavaUtils {
 			sqe.printStackTrace();
 		}
 		return null;
+	}
+
+	public void modifyContract(String contrct, String mobNum) throws ClassNotFoundException {
+		String contract = contrct;
+		if (contrct.equalsIgnoreCase("FINO | RBL")) {
+			contract = "FINO";
+		}
+		try {
+			conn = createConnection(configProperties.get("master"));
+			String deleteQuery = "DELETE FROM master.contract WHERE organization = (SELECT u.`organization` FROM `master`.`user` u "
+					+ "JOIN `master`.`user_attribute` ua ON u.`id`=ua.`user_id` WHERE ua.`attr_value`='" + mobNum + "' "
+					+ "AND u.status = 'ACTIVE')";
+
+			String insertQuery1 = "INSERT INTO `contract` (`organization`, `partner_organization`) "
+					+ "VALUES((SELECT u.`organization` FROM `master`.`user` u JOIN `master`.`user_attribute` ua "
+					+ "ON u.`id`=ua.`user_id` WHERE ua.`attr_value`='" + mobNum + "' "
+					+ "AND u.status = 'ACTIVE'),(SELECT id " + "FROM master.organization WHERE `CODE` = 'rbl'));";
+			String insertQuery2 = "INSERT INTO `contract` (`organization`, `partner_organization`) "
+					+ "VALUES((SELECT u.`organization` FROM `master`.`user` u JOIN `master`.`user_attribute` ua "
+					+ "ON u.`id`=ua.`user_id` WHERE ua.`attr_value`='" + mobNum + "' "
+					+ "AND u.status = 'ACTIVE'),(SELECT id " + "FROM master.organization WHERE `CODE` = '" + contract
+					+ "'));";
+
+			stmt = conn.createStatement();
+			stmt.executeUpdate(deleteQuery);
+			System.out.println("Deleting all contracts");
+			stmt.executeUpdate(insertQuery1);
+			stmt.executeUpdate(insertQuery2);
+			System.out.println("Inserting " + contract.toLowerCase() + " along with rbl");
+		} catch (SQLException sqe) {
+			System.out.println("Duplicate entry for " + contract);
+		}
+	}
+
+	public void insertContract(String mobNum) throws ClassNotFoundException {
+		try {
+			conn = createConnection(configProperties.get("master"));
+			stmt = conn.createStatement();
+
+			List<String> org_code = new ArrayList<String>();
+			org_code.add("rbl");
+			org_code.add("ybl");
+			org_code.add("paytm");
+			org_code.add("fino");
+			org_code.add("cms");
+			org_code.add("billpay");
+			org_code.add("recharges");
+			org_code.add("wallet");
+			org_code.add("pg-wallet");
+			org_code.add("gold");
+
+			for (String code : org_code) {
+				String insertQuery = "INSERT INTO `contract` (`organization`, `partner_organization`) "
+						+ "VALUES((SELECT u.`organization` FROM `master`.`user` u JOIN `master`.`user_attribute` ua "
+						+ "ON u.`id`=ua.`user_id` WHERE ua.`attr_value`='" + mobNum + "' AND u.status "
+						+ "= 'ACTIVE'),(SELECT id FROM master.organization WHERE `CODE` = '" + code + "'));";
+				try {
+					stmt.executeUpdate(insertQuery);
+				} catch (Exception e) {
+					System.out.println("Duplicate entry for " + code);
+				}
+			}
+		} catch (SQLException sqe) {
+			System.out.println("Error connecting DB!! BC Agent ID update  failed..!");
+			sqe.printStackTrace();
+		}
 	}
 }
