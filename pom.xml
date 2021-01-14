@@ -12,7 +12,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<surefire.version>2.14.1</surefire.version>
-		<poi.version>3.13</poi.version>
+		<poi.version>4.1.2</poi.version>
 		<testng.version>6.8.8</testng.version>
 		<mysqlconnector.version>5.1.38</mysqlconnector.version>
 		<appium-javaclient.version>4.1.2</appium-javaclient.version>
