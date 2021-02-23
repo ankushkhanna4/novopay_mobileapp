@@ -17,7 +17,8 @@ import in.novopay.platform_ui.utils.DBUtils;
 import in.novopay.platform_ui.utils.Log;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
@@ -155,9 +156,9 @@ public class CapitalFirstPage extends BasePage {
 				}
 
 				if (usrData.get("MPINSCREENBUTTON").equalsIgnoreCase("Cancel")) {
-					mdriver.pressKeyCode(AndroidKeyCode.BACK);
+					mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 					wait.until(ExpectedConditions.elementToBeClickable(confirmAmount));
-					mdriver.pressKeyCode(AndroidKeyCode.BACK);
+					mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 					wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 					okBtn.click();
 					Log.info("Home page displayed");
@@ -244,7 +245,7 @@ public class CapitalFirstPage extends BasePage {
 				}
 			} else if (usrData.get("SUBMIT").equalsIgnoreCase("Fetch")) {
 				wait.until(ExpectedConditions.visibilityOf(confirmAmount));
-				mdriver.pressKeyCode(AndroidKeyCode.BACK);
+				mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 				wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 				okBtn.click();
 				Log.info("Home page displayed");

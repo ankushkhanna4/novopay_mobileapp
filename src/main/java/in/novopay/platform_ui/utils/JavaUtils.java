@@ -25,6 +25,7 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Random;
 import java.util.Set;
+import java.util.TimeZone;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecuteResultHandler;
@@ -32,10 +33,11 @@ import org.apache.commons.exec.DefaultExecutor;
 import org.apache.commons.exec.ExecuteWatchdog;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -104,56 +106,114 @@ public class JavaUtils extends LoadableComponent {
 			if (env.equalsIgnoreCase("QA1")) {
 				ini.put("Common", "env", "qa1");
 				ini.put("Common", "webAppUrl", "https://qa1-retailer.novopay.in/");
+				ini.put("Common", "finOpsUrl", "https://qa1-finance-portal.novopay.in");
 				ini.put("Common", "dbUrl", "jdbc:mysql://192.168.150.7:3306/");
+				ini.put("Common", "dbUserName", "akhanna");
+				ini.put("Common", "dbPassword", "akhanna123$");
 				ini.put("Common", "mongoDbUrl", "192.168.150.7:37017/");
-				ini.put("Common", "mongoDbUserName", "nodecms");
-				ini.put("Common", "mongoDbPassword", "Novopay#987");
+				ini.put("Common", "mongoDbUserNameCms", "nodecms");
+				ini.put("Common", "mongoDbPasswordCms", "Novopay#987");
+				ini.put("Common", "mongoDbUserNameBillpay", "akhanna");
+				ini.put("Common", "mongoDbPasswordBillpay", "akhanna123$");
 				ini.put("Common", "server.host.name", "qa1.novopay.in");
 				ini.put("Common", "server.host.ip", "192.168.150.7");
 				ini.put("Common", "server.host.port", "22");
 				ini.put("Common", "server.username", "akhanna");
-				ini.put("Common", "server.password", "qazxsw123");
+				ini.put("Common", "server.password", "qaonenovopay");
 				configProperties.put("env", "qa1");
 				configProperties.put("webAppUrl", "https://qa1-retailer.novopay.in/");
+				configProperties.put("finOpsUrl", "https://qa1-finance-portal.novopay.in");
 				configProperties.put("dbUrl", "jdbc:mysql://192.168.150.7:3306/");
+				configProperties.put("dbUserName", "akhanna");
+				configProperties.put("dbPassword", "akhanna123$");
 				configProperties.put("mongoDbUrl", "192.168.150.7:37017/");
-				configProperties.put("mongoDbUserName", "nodecms");
-				configProperties.put("mongoDbPassword", "Novopay#987");
+				configProperties.put("mongoDbUserNameCms", "nodecms");
+				configProperties.put("mongoDbPasswordCms", "Novopay#987");
+				configProperties.put("mongoDbUserNameBillpay", "akhanna");
+				configProperties.put("mongoDbPasswordBillpay", "akhanna123$");
 				configProperties.put("server.host.name", "qa1.novopay.in");
 				configProperties.put("server.host.ip", "192.168.150.7");
 				configProperties.put("server.host.port", "22");
 				configProperties.put("server.username", "akhanna");
-				configProperties.put("server.password", "qazxsw123");
+				configProperties.put("server.password", "qaonenovopay");
 			} else if (env.equalsIgnoreCase("QA2")) {
 				ini.put("Common", "env", "qa2");
 				ini.put("Common", "webAppUrl", "https://qa2-retailer.novopay.in/");
+				ini.put("Common", "finOpsUrl", "https://qa2-finance-portal.novopay.in");
 				ini.put("Common", "dbUrl", "jdbc:mysql://192.168.150.24:3306/");
+				ini.put("Common", "dbUserName", "akhanna");
+				ini.put("Common", "dbPassword", "akhanna123$");
 				ini.put("Common", "mongoDbUrl", "192.168.150.24:37017/");
-				ini.put("Common", "mongoDbUserName", "nodecms");
-				ini.put("Common", "mongoDbPassword", "Novopay#987");
+				ini.put("Common", "mongoDbUserNameCms", "nodecms");
+				ini.put("Common", "mongoDbPasswordCms", "Novopay#987");
+				ini.put("Common", "mongoDbUserNameBillpay", "akhanna");
+				ini.put("Common", "mongoDbPasswordBillpay", "akhanna123$");
 				ini.put("Common", "server.host.name", "qa2.novopay.in");
 				ini.put("Common", "server.host.ip", "192.168.150.24");
 				ini.put("Common", "server.host.port", "22");
 				ini.put("Common", "server.username", "akhanna");
-				ini.put("Common", "server.password", "qazxsw123");
+				ini.put("Common", "server.password", "qatwonovopay");
 				configProperties.put("env", "qa2");
 				configProperties.put("webAppUrl", "https://qa2-retailer.novopay.in/");
+				configProperties.put("finOpsUrl", "https://qa2-finance-portal.novopay.in");
 				configProperties.put("dbUrl", "jdbc:mysql://192.168.150.24:3306/");
+				configProperties.put("dbUserName", "akhanna");
+				configProperties.put("dbPassword", "akhanna123$");
 				configProperties.put("mongoDbUrl", "192.168.150.24:37017/");
-				configProperties.put("mongoDbUserName", "nodecms");
-				configProperties.put("mongoDbPassword", "Novopay#987");
+				configProperties.put("mongoDbUserNameCms", "nodecms");
+				configProperties.put("mongoDbPasswordCms", "Novopay#987");
+				configProperties.put("mongoDbUserNameBillpay", "akhanna");
+				configProperties.put("mongoDbPasswordBillpay", "akhanna123$");
 				configProperties.put("server.host.name", "qa2.novopay.in");
 				configProperties.put("server.host.ip", "192.168.150.24");
 				configProperties.put("server.host.port", "22");
 				configProperties.put("server.username", "akhanna");
-				configProperties.put("server.password", "qazxsw123");
+				configProperties.put("server.password", "qatwonovopay");
+			} else if (env.equalsIgnoreCase("DEV1")) {
+				ini.put("Common", "env", "dev1");
+				ini.put("Common", "webAppUrl", "https://dev1-retailer.novopay.in/");
+				ini.put("Common", "finOpsUrl", "https://dev1-finance-portal.novopay.in");
+				ini.put("Common", "dbUrl", "jdbc:mysql://192.168.150.27:3306/");
+				ini.put("Common", "dbUserName", "akhanna");
+				ini.put("Common", "dbPassword", "AnkushThe@Grete123");
+				ini.put("Common", "mongoDbUrl", "192.168.150.27:37017/");
+				ini.put("Common", "mongoDbUserNameCms", "nodecms");
+				ini.put("Common", "mongoDbPasswordCms", "Novopay#987");
+				ini.put("Common", "mongoDbUserNameBillpay", "novopaybillpay");
+				ini.put("Common", "mongoDbPasswordBillpay", "novopaybillpay123$");
+				ini.put("Common", "server.host.name", "dev1.novopay.in");
+				ini.put("Common", "server.host.ip", "192.168.150.27");
+				ini.put("Common", "server.host.port", "22");
+				ini.put("Common", "server.username", "akhanna");
+				ini.put("Common", "server.password", "devonenovopay");
+				configProperties.put("env", "dev1");
+				configProperties.put("webAppUrl", "https://dev1-retailer.novopay.in/");
+				configProperties.put("finOpsUrl", "https://dev1-finance-portal.novopay.in");
+				configProperties.put("dbUrl", "jdbc:mysql://192.168.150.27:3306/");
+				configProperties.put("dbUserName", "akhanna");
+				configProperties.put("dbPassword", "AnkushThe@Grete123");
+				configProperties.put("mongoDbUrl", "192.168.150.27:37017/");
+				configProperties.put("mongoDbUserNameCms", "nodecms");
+				configProperties.put("mongoDbPasswordCms", "Novopay#987");
+				configProperties.put("mongoDbUserNameBillpay", "novopaybillpay");
+				configProperties.put("mongoDbPasswordBillpay", "novopaybillpay123$");
+				configProperties.put("server.host.name", "dev1.novopay.in");
+				configProperties.put("server.host.ip", "192.168.150.27");
+				configProperties.put("server.host.port", "22");
+				configProperties.put("server.username", "akhanna");
+				configProperties.put("server.password", "devonenovopay");
 			} else if (env.equalsIgnoreCase("PP")) {
 				ini.put("Common", "env", "pre-prod");
 				ini.put("Common", "webAppUrl", "https://preretailer.novopay.in/");
+				ini.put("Common", "finOpsUrl", "https://preprod-finance-portal.novopay.in");
 				ini.put("Common", "dbUrl", "jdbc:mysql://192.168.150.2:3306/");
+				ini.put("Common", "dbUserName", "akhanna");
+				ini.put("Common", "dbPassword", "akhanna123$");
 				ini.put("Common", "mongoDbUrl", "192.168.150.2:37017/");
-				ini.put("Common", "mongoDbUserName", "akhanna");
-				ini.put("Common", "mongoDbPassword", "akhanna123");
+				ini.put("Common", "mongoDbUserNameCms", "akhanna");
+				ini.put("Common", "mongoDbPasswordCms", "akhanna123");
+				ini.put("Common", "mongoDbUserNameBillpay", "nodebillpay");
+				ini.put("Common", "mongoDbPasswordBillpay", "Zv~B7C_DA");
 				ini.put("Common", "server.host.name", "pre-prod.novopay.in");
 				ini.put("Common", "server.host.ip", "192.168.150.2");
 				ini.put("Common", "server.host.port", "1024");
@@ -161,33 +221,56 @@ public class JavaUtils extends LoadableComponent {
 				ini.put("Common", "server.password", "akhanna123$");
 				configProperties.put("env", "pre-prod");
 				configProperties.put("webAppUrl", "https://preretailer.novopay.in/");
+				configProperties.put("finOpsUrl", "https://preprod-finance-portal.novopay.in");
 				configProperties.put("dbUrl", "jdbc:mysql://192.168.150.2:3306/");
+				configProperties.put("dbUserName", "akhanna");
+				configProperties.put("dbPassword", "akhanna123$");
 				configProperties.put("mongoDbUrl", "192.168.150.2:37017/");
-				configProperties.put("mongoDbUserName", "akhanna");
-				configProperties.put("mongoDbPassword", "akhanna123");
+				configProperties.put("mongoDbUserNameCms", "akhanna");
+				configProperties.put("mongoDbPasswordCms", "akhanna123");
+				configProperties.put("mongoDbUserNameBillpay", "nodebillpay");
+				configProperties.put("mongoDbPasswordBillpay", "Zv~B7C_DA");
 				configProperties.put("server.host.name", "pre-prod.novopay.in");
 				configProperties.put("server.host.ip", "192.168.150.2");
 				configProperties.put("server.host.port", "1024");
 				configProperties.put("server.username", "akhanna");
 				configProperties.put("server.password", "akhanna123$");
-			} else if (env.equalsIgnoreCase("PS")) {
-				ini.put("Common", "webAppUrl", "https://retail-testing.psservices.org/");
-				ini.put("Common", "dbUrl", "jdbc:mysql://192.168.150.7:3306/");
-				ini.put("Common", "env", "qa1");
-				configProperties.put("webAppUrl", "https://retail-testing.psservices.org");
-				configProperties.put("dbUrl", "jdbc:mysql://192.168.150.7:3306/");
-			} else if (env.equalsIgnoreCase("UAT")) {
-				ini.put("Common", "webAppUrl", "https://uat-retailer.novopay.in/");
-				ini.put("Common", "dbUrl", "jdbc:mysql://localhost:8007/");
-				ini.put("Common", "mongoDbUrl", "localhost:37017/");
-				ini.put("Common", "env", "uat");
-				configProperties.put("webAppUrl", "https://uat-retailer.novopay.in/");
-				configProperties.put("dbUrl", "jdbc:mysql://localhost:8007/");
-				configProperties.put("mongoDbUrl", "localhost:37017/");
+			} else if (env.equalsIgnoreCase("QA1AWS")) {
+				ini.put("Common", "env", "aws-qa1");
+				ini.put("Common", "webAppUrl", "https://aws-qa1-retailer.novopay.in/");
+				ini.put("Common", "finOpsUrl", "https://aws-qa1-finance-portal.novopay.in");
+				ini.put("Common", "dbUrl", "jdbc:mysql://localhost:3306/");
+				ini.put("Common", "dbUserName", "akhanna");
+				ini.put("Common", "dbPassword", "akhanna123$");
+				ini.put("Common", "mongoDbUrl", "192.168.150.7:37017/");
+				ini.put("Common", "mongoDbUserNameCms", "nodecms");
+				ini.put("Common", "mongoDbPasswordCms", "Novopay#987");
+				ini.put("Common", "mongoDbUserNameBillpay", "akhanna");
+				ini.put("Common", "mongoDbPasswordBillpay", "akhanna123$");
+				ini.put("Common", "server.host.name", "qa1.novopay.in");
+				ini.put("Common", "server.host.ip", "192.168.150.7");
+				ini.put("Common", "server.host.port", "22");
+				ini.put("Common", "server.username", "akhanna");
+				ini.put("Common", "server.password", "qazxsw123");
+				configProperties.put("env", "aws-qa1");
+				configProperties.put("webAppUrl", "https://aws-qa1-retailer.novopay.in/");
+				configProperties.put("finOpsUrl", "https://aws-qa1-finance-portal.novopay.in");
+				configProperties.put("dbUrl", "jdbc:mysql://localhost:3306/");
+				configProperties.put("dbUserName", "akhanna");
+				configProperties.put("dbPassword", "akhanna123$");
+				configProperties.put("mongoDbUrl", "192.168.150.7:37017/");
+				configProperties.put("mongoDbUserNameCms", "nodecms");
+				configProperties.put("mongoDbPasswordCms", "Novopay#987");
+				configProperties.put("mongoDbUserNameBillpay", "akhanna");
+				configProperties.put("mongoDbPasswordBillpay", "akhanna123$");
+				configProperties.put("server.host.name", "qa1.novopay.in");
+				configProperties.put("server.host.ip", "192.168.150.7");
+				configProperties.put("server.host.port", "22");
+				configProperties.put("server.username", "akhanna");
+				configProperties.put("server.password", "qazxsw123");
 			}
 			ini.store();
 			BasePage.wdriver = null;
-			BasePage.mdriver = null;
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -205,63 +288,9 @@ public class JavaUtils extends LoadableComponent {
 		return null;
 	}
 
-	public String readValue(String key) {
-		// if key is a number then use the as is
-		if (java.util.regex.Pattern.matches("\\d+", key)) {
-			return key;
-		} else if (key.equalsIgnoreCase("Random")) {
-			return generateRandomNo(10);
-		} else {
-			return readIniValue("CONFIG", key);
-		}
-
-	}
-
-	public String readIniValue(String sectionName, String key) {
-		Ini ini;
-		try {
-			ini = new Ini(new File("./data.ini"));
-			Ini.Section section = ini.get(sectionName);
-			String value = section.get(key);
-			return value;
-		} catch (InvalidFileFormatException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	public String getMongoDetailsfromIni(String key) {
-		Ini ini;
-		try {
-			ini = new Ini(new File("./config.ini"));
-			return ini.get("Common", key);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	public String getMobileFromIni(String mobileNumber) {
-		Ini ini;
-		try {
-			ini = new Ini(new File("./data.ini"));
-			if (mobileNumber.equalsIgnoreCase("Random")) {
-				ini.put("CustomerData", "CustomerMobNum", generateRandomMobileNumber());
-				ini.store();
-				return ini.get("CustomerData", "CustomerMobNum");
-			} else if (mobileNumber.equalsIgnoreCase("GetCustomerMobNum")) {
-				return ini.get("CustomerData", "GetCustomerMobNum");
-			} else {
-				ini.put("CustomerData", "CustomerMobNum", mobileNumber);
-				ini.store();
-				return ini.get("CustomerData", "CustomerMobNum");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
+	// Get mobile number from Ini file
+	public String mobileNumFromIni() {
+		return getLoginMobileFromIni("RetailerMobNum");
 	}
 
 	public String getAEPSMobNum(String mobileNumber) {
@@ -343,26 +372,11 @@ public class JavaUtils extends LoadableComponent {
 				return ini.get("CustomerData", "GetCustomerMobNum");
 			} else if (data.equalsIgnoreCase("GetBeneNum")) {
 				return ini.get("BeneData", "BeneNum");
-			} else {
-				ini.put("CustomerData", "GetCustomerName", "");
-				ini.store();
+			} else if (data.equalsIgnoreCase("Skip") || data.equalsIgnoreCase("ExistingName")) {
 				return ini.get("CustomerData", "GetCustomerName");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	public String dateIni(String dateOfBirth) {
-		Ini ini;
-		try {
-			ini = new Ini(new File("./data.ini"));
-			if (dateOfBirth.equalsIgnoreCase("getDob")) {
-				return ini.get("RetailerData", "GetDate");
 			} else {
-				ini.put("RetailerData", "GetDate", dateOfBirth);
-				ini.store();
+				System.out.println("Skipping money transfer flow");
+				return "";
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -448,6 +462,23 @@ public class JavaUtils extends LoadableComponent {
 		return null;
 	}
 
+	public String getBeneNameFromBank(String key, String beneName) {
+		Ini ini;
+		try {
+			ini = new Ini(new File("./data.ini"));
+			if (key.equalsIgnoreCase("StoreBeneName")) {
+				ini.put("BeneData", "BeneNameFromBank", beneName);
+				ini.store();
+				return ini.get("BeneData", "BeneNameFromBank");
+			} else if (key.equalsIgnoreCase("GetBeneName")) {
+				return ini.get("BeneData", "BeneNameFromBank");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public String getBankNameFromIni(String name) {
 		Ini ini;
 		try {
@@ -465,45 +496,101 @@ public class JavaUtils extends LoadableComponent {
 		return null;
 	}
 
-	public String getBalanceFromIni(String balance, String walletType, String amount) {
+	public String getEmailIdFromIni(String name) {
 		Ini ini;
 		try {
 			ini = new Ini(new File("./data.ini"));
-			if (balance.equalsIgnoreCase("Store") && walletType.equalsIgnoreCase("retailer")) {
-				ini.put("CustomerData", "Retailer Wallet Balance", amount);
+			if (name.equalsIgnoreCase("Random")) {
+				ini.put("SelfLoadRequestData", "EmailId", generateRandomEmailId());
 				ini.store();
-			} else if (balance.equalsIgnoreCase("Get") && walletType.equalsIgnoreCase("retailer")) {
-				return ini.get("CustomerData", "Retailer Wallet Balance");
-			} else if (balance.equalsIgnoreCase("Store") && walletType.equalsIgnoreCase("cashout")) {
-				ini.put("CustomerData", "Cashout Wallet Balance", amount);
+				return ini.get("SelfLoadRequestData", "EmailId");
+			} else if (name.equalsIgnoreCase("GetEmailId")) {
+				return ini.get("SelfLoadRequestData", "EmailId");
+			} else {
+				ini.put("SelfLoadRequestData", "EmailId", name);
 				ini.store();
-			} else if (balance.equalsIgnoreCase("Get") && walletType.equalsIgnoreCase("cashout")) {
-				return ini.get("CustomerData", "Cashout Wallet Balance");
-			} else if (balance.equalsIgnoreCase("Store") && walletType.equalsIgnoreCase("merchant")) {
-				ini.put("CustomerData", "Merchant Wallet Balance", amount);
-				ini.store();
-			} else if (balance.equalsIgnoreCase("Get") && walletType.equalsIgnoreCase("merchant")) {
-				return ini.get("CustomerData", "Merchant Wallet Balance");
+				return ini.get("SelfLoadRequestData", "EmailId");
 			}
-			return null;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-	public String getPartnerFromIni(String url) {
+	public String getTermNumberFromIni(String name) {
 		Ini ini;
 		try {
 			ini = new Ini(new File("./data.ini"));
-			if (url.endsWith("rbl-transfer")) {
-				ini.put("RetailerData", "Partner", "RBL");
+			if (name.equalsIgnoreCase("Random")) {
+				ini.put("SelfLoadRequestData", "Term", generateRandomTermNumber());
 				ini.store();
-			} else if (url.endsWith("axis-transfer")) {
-				ini.put("RetailerData", "Partner", "AXIS");
+				return ini.get("SelfLoadRequestData", "Term");
+			} else if (name.equalsIgnoreCase("GetTerm")) {
+				return ini.get("SelfLoadRequestData", "Term");
+			} else {
+				ini.put("SelfLoadRequestData", "Term", name);
 				ini.store();
+				return ini.get("SelfLoadRequestData", "Term");
 			}
-			return ini.get("RetailerData", "Partner");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String getTxnNumberFromIni(String name) {
+		Ini ini;
+		try {
+			ini = new Ini(new File("./data.ini"));
+			if (name.equalsIgnoreCase("Random")) {
+				ini.put("SelfLoadRequestData", "Txn", generateRandomTxnNumber());
+				ini.store();
+				return ini.get("SelfLoadRequestData", "Txn");
+			} else if (name.equalsIgnoreCase("GetTxn")) {
+				return ini.get("SelfLoadRequestData", "Txn");
+			} else {
+				ini.put("SelfLoadRequestData", "Txn", name);
+				ini.store();
+				return ini.get("SelfLoadRequestData", "Txn");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String getPartner(String name) {
+		Ini ini;
+		try {
+			ini = new Ini(new File("./data.ini"));
+			if (name.equalsIgnoreCase("GetPartner")) {
+				return ini.get("RetailerData", "Partner");
+			} else {
+				ini.put("RetailerData", "Partner", name);
+				ini.store();
+				return ini.get("RetailerData", "Partner");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String getWalletBalanceFromIni(String wallet, String balance) {
+		Ini ini;
+		try {
+			ini = new Ini(new File("./data.ini"));
+			if (wallet.equalsIgnoreCase("retailer")) {
+				ini.put("RetailerData", "RetailerWalletBalance", balance);
+				ini.store();
+			} else if (wallet.equalsIgnoreCase("cashout")) {
+				ini.put("RetailerData", "CashoutWalletBalance", balance);
+				ini.store();
+			} else if (wallet.equalsIgnoreCase("GetRetailer")) {
+				return ini.get("RetailerData", "RetailerWalletBalance");
+			} else if (wallet.equalsIgnoreCase("GetCashout")) {
+				return ini.get("RetailerData", "CashoutWalletBalance");
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -585,6 +672,83 @@ public class JavaUtils extends LoadableComponent {
 				ini.store();
 			} else if (key.equalsIgnoreCase("FtDueAmount")) {
 				return ini.get("CmsData", "FtDueAmount");
+			} else if (key.equalsIgnoreCase("StoreFinoCMSAmount")) {
+				ini.put("CmsData", "FinoCMSAmount", value);
+				ini.store();
+			} else if (key.equalsIgnoreCase("FinoCMSAmount")) {
+				return ini.get("CmsData", "FinoCMSAmount");
+			} else if (key.equalsIgnoreCase("StoreFinoCMSMobNum")) {
+				ini.put("CmsData", "FinoCMSMobNum", value);
+				ini.store();
+			} else if (key.equalsIgnoreCase("FinoCMSMobNum")) {
+				return ini.get("CmsData", "FinoCMSMobNum");
+			} else if (key.equalsIgnoreCase("StoreCmsBiller")) {
+				ini.put("CmsData", "Biller", value);
+				ini.store();
+			} else if (key.equalsIgnoreCase("CmsBiller")) {
+				return ini.get("CmsData", "Biller");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String rechargeDataFromIni(String key, String value) {
+		Ini ini;
+		try {
+			ini = new Ini(new File("./data.ini"));
+			if (key.equalsIgnoreCase("StoreMobNum")) {
+				ini.put("RechargeData", "MobNum", value);
+				ini.store();
+			} else if (key.equalsIgnoreCase("GetMobNum")) {
+				return ini.get("RechargeData", "MobNum");
+			} else if (key.equalsIgnoreCase("StoreCustomerId")) {
+				ini.put("RechargeData", "CustomerId", value);
+				ini.store();
+			} else if (key.equalsIgnoreCase("GetCustomerId")) {
+				return ini.get("RechargeData", "CustomerId");
+			} else if (key.equalsIgnoreCase("StoreDatacardNum")) {
+				ini.put("RechargeData", "DatacardNum", value);
+				ini.store();
+			} else if (key.equalsIgnoreCase("GetDatacardNum")) {
+				return ini.get("RechargeData", "DatacardNum");
+			} else if (key.equalsIgnoreCase("StoreAmount")) {
+				ini.put("RechargeData", "Amount", value);
+				ini.store();
+			} else if (key.equalsIgnoreCase("GetAmount")) {
+				return ini.get("RechargeData", "Amount");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String loadMoneyNowDataFromIni(String key, String value) {
+		Ini ini;
+		try {
+			ini = new Ini(new File("./data.ini"));
+			if (key.equalsIgnoreCase("StoreAmount")) {
+				ini.put("LoadMoneyNowData", "Amount", value);
+				ini.store();
+			} else if (key.equalsIgnoreCase("GetAmount")) {
+				return ini.get("LoadMoneyNowData", "Amount");
+			} else if (key.equalsIgnoreCase("StoreMethod")) {
+				ini.put("LoadMoneyNowData", "Method", value);
+				ini.store();
+			} else if (key.equalsIgnoreCase("GetMethod")) {
+				return ini.get("LoadMoneyNowData", "Method");
+			} else if (key.equalsIgnoreCase("StoreOrderId")) {
+				ini.put("LoadMoneyNowData", "OrderId", value);
+				ini.store();
+			} else if (key.equalsIgnoreCase("GetOrderId")) {
+				return ini.get("LoadMoneyNowData", "OrderId");
+			} else if (key.equalsIgnoreCase("StoreLoadAmount")) {
+				ini.put("LoadMoneyNowData", "LoadAmount", value);
+				ini.store();
+			} else if (key.equalsIgnoreCase("GetLoadAmount")) {
+				return ini.get("LoadMoneyNowData", "LoadAmount");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -603,21 +767,37 @@ public class JavaUtils extends LoadableComponent {
 		return null;
 	}
 
-	public String getvalueFromIni(String name) {
+	public String getWalletFromIni(String type, String wallet) {
 		Ini ini;
 		try {
-			ini = new Ini(new File("./testData.ini"));
-			return ini.get("Common", name);
+			ini = new Ini(new File("./data.ini"));
+			if (type.equalsIgnoreCase("StoreWallet")) {
+				ini.put("Wallet", "Wallet", wallet);
+				ini.store();
+			} else if (type.equalsIgnoreCase("GetWallet")) {
+				return ini.get("Wallet", "Wallet");
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-	public String setvalueToIni(String user, String value) {
+	public String getValueFromIni(String key) {
 		Ini ini;
 		try {
-			ini = new Ini(new File("./testData.ini"));
+			ini = new Ini(new File("./config.ini"));
+			return ini.get("Common", key);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String setValueToIni(String user, String value) {
+		Ini ini;
+		try {
+			ini = new Ini(new File("./config.ini"));
 			ini.put("Common", user + "Id", value);
 			ini.store();
 		} catch (IOException e) {
@@ -668,8 +848,7 @@ public class JavaUtils extends LoadableComponent {
 				ini.put(sectionName, record.getCell(0).toString(), generateRandomNo(10));
 
 			} else {
-
-				record.getCell(2).setCellType(Cell.CELL_TYPE_STRING);
+				record.getCell(2).toString();
 				ini.put(sectionName, record.getCell(0).toString(), record.getCell(2).toString());
 
 			}
@@ -677,8 +856,7 @@ public class JavaUtils extends LoadableComponent {
 		ini.store();
 	}
 
-	public String checkExecutionStatus(String workbook, String sheetName, String testCaseID)
-			throws InvalidFormatException, IOException {
+	public String checkExecutionStatus(String workbook, String sheetName, String testCaseID) {
 
 		HashMap<String, String> testRow = readExcelData(workbook, sheetName, testCaseID);
 
@@ -723,8 +901,6 @@ public class JavaUtils extends LoadableComponent {
 			throw new NullPointerException("Failed due to NullPointerException" + e);
 		} catch (EncryptedDocumentException e) {
 			throw new EncryptedDocumentException("Failed due to EncryptedDocumentException" + e);
-		} catch (InvalidFormatException e) {
-			throw new NullPointerException("Failed due to InvalidFormatException" + e);
 		} catch (IOException e) {
 			throw new NullPointerException("Failed due to IOException" + e);
 		}
@@ -733,7 +909,6 @@ public class JavaUtils extends LoadableComponent {
 	/*
 	 * return List of HashMap with data read from excel sheet
 	 */
-	@SuppressWarnings("static-access")
 	public List<HashMap<String, String>> returnRowsUniqueValueBasedOnTestTypeList(String workbookName, String sheetName,
 			String testType) {
 
@@ -766,16 +941,16 @@ public class JavaUtils extends LoadableComponent {
 				}
 				if (flag == true) {
 					for (i = 0; i < headers.getLastCellNum(); i++) {
-						if ((null != record.getCell(i))
-								&& (record.getCell(i).getCellType() == record.getCell(i).CELL_TYPE_NUMERIC)) {
-							if (HSSFDateUtil.isCellDateFormatted(record.getCell(i))) {
+						record.getCell(i);
+						if ((null != record.getCell(i)) && (record.getCell(i).getCellType() == CellType.NUMERIC)) {
+							if (DateUtil.isCellDateFormatted(record.getCell(i))) {
 
 								DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 								value = dateFormat.format(record.getCell(i).getDateCellValue()).trim();
 
 							} else {
-								record.getCell(i).setCellType(Cell.CELL_TYPE_STRING);
+								record.getCell(i).toString();
 
 								value = record.getCell(i).toString().trim();
 							}
@@ -802,8 +977,6 @@ public class JavaUtils extends LoadableComponent {
 			throw new NullPointerException("Failed due to NullPointerException" + e);
 		} catch (EncryptedDocumentException e) {
 			throw new EncryptedDocumentException("Failed due to EncryptedDocumentException" + e);
-		} catch (InvalidFormatException e) {
-			throw new NullPointerException("Failed due to InvalidFormatException" + e);
 		} catch (IOException e) {
 			throw new NullPointerException("Failed due to IOException" + e);
 		}
@@ -840,8 +1013,6 @@ public class JavaUtils extends LoadableComponent {
 			throw new NullPointerException("Failed due to NullPointerException" + e);
 		} catch (EncryptedDocumentException e) {
 			throw new EncryptedDocumentException("Failed due to EncryptedDocumentException" + e);
-		} catch (InvalidFormatException e) {
-			throw new NullPointerException("Failed due to InvalidFormatException" + e);
 		} catch (IOException e) {
 			throw new NullPointerException("Failed due to IOException" + e);
 		}
@@ -924,8 +1095,6 @@ public class JavaUtils extends LoadableComponent {
 			throw new NullPointerException("Failed due to NullPointerException" + e);
 		} catch (EncryptedDocumentException e) {
 			throw new EncryptedDocumentException("Failed due to EncryptedDocumentException" + e);
-		} catch (InvalidFormatException e) {
-			throw new NullPointerException("Failed due to InvalidFormatException" + e);
 		} catch (IOException e) {
 			throw new NullPointerException("Failed due to IOException" + e);
 		}
@@ -933,9 +1102,7 @@ public class JavaUtils extends LoadableComponent {
 		return values;
 	}
 
-	@SuppressWarnings("static-access")
-	public HashMap<String, String> readExcelData(String workbook, String sheetname, String uniqueValue)
-			throws InvalidFormatException, IOException {
+	public HashMap<String, String> readExcelData(String workbook, String sheetname, String uniqueValue) {
 		try {
 			String key, value;
 			FileInputStream file = new FileInputStream(configProperties.get(workbook));
@@ -946,29 +1113,25 @@ public class JavaUtils extends LoadableComponent {
 
 			Row headers = it.next();
 			while (it.hasNext()) {
-
 				Row record = it.next();
 				String cellValue = record.getCell(0).toString().trim();
 				if (cellValue.equalsIgnoreCase(uniqueValue)) {
-
 					for (int i = 0; i < headers.getLastCellNum(); i++) {
-						if ((null != record.getCell(i))
-								&& (record.getCell(i).getCellType() == record.getCell(i).CELL_TYPE_NUMERIC)) {
-							if (HSSFDateUtil.isCellDateFormatted(record.getCell(i))) {
-
+						record.getCell(i);
+						if ((null != record.getCell(i)) && (record.getCell(i).getCellType() == CellType.NUMERIC)) {
+							if (DateUtil.isCellDateFormatted(record.getCell(i))) {
 								DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
 								value = dateFormat.format(record.getCell(i).getDateCellValue()).trim();
-
 							} else {
-								record.getCell(i).setCellType(Cell.CELL_TYPE_STRING);
-
-								value = record.getCell(i).toString().trim();
+								String cellText = record.getCell(i).toString();
+								if (cellText.endsWith(".0")) {
+									value = cellText.substring(0, cellText.length() - 2).trim();
+								} else {
+									value = cellText.trim();
+								}
 							}
 							key = headers.getCell(i).toString().trim();
-
 						} else {
-
 							key = (headers.getCell(i) + "".toString()).trim() + "";
 							value = (null != record.getCell(i)) ? (record.getCell(i) + "".toString()).trim() + "" : "";
 						}
@@ -979,13 +1142,11 @@ public class JavaUtils extends LoadableComponent {
 			}
 			return dataMap;
 		} catch (NullPointerException e) {
-			throw new NullPointerException("Failed due to " + e);
+			throw new NullPointerException("Failed due to NullPointerException" + e);
 		} catch (EncryptedDocumentException e) {
-			throw new EncryptedDocumentException("Failed due to " + e);
-		} catch (InvalidFormatException e) {
-			throw new InvalidFormatException("Failed due to " + e);
+			throw new EncryptedDocumentException("Failed due to EncryptedDocumentException" + e);
 		} catch (IOException e) {
-			throw new IOException("Failed due to " + e);
+			throw new NullPointerException("Failed due to IOException" + e);
 		}
 	}
 
@@ -1013,18 +1174,90 @@ public class JavaUtils extends LoadableComponent {
 			throw new NullPointerException("Failed due to NullPointerException" + e);
 		} catch (EncryptedDocumentException e) {
 			throw new EncryptedDocumentException("Failed due to EncryptedDocumentException" + e);
-		} catch (InvalidFormatException e) {
-			throw new NullPointerException("Failed due to InvalidFormatException" + e);
 		} catch (IOException e) {
 			throw new NullPointerException("Failed due to IOException" + e);
 		}
 	}
+	
+	public String readValue(String key) {
+		// if key is a number then use the as is
+		if (java.util.regex.Pattern.matches("\\d+", key)) {
+			return key;
+		} else if (key.equalsIgnoreCase("Random")) {
+			return generateRandomNo(10);
+		} else {
+			return readIniValue("CONFIG", key);
+		}
+	}
+	
+	public String readIniValue(String sectionName, String key) {
+		Ini ini;
+		try {
+			ini = new Ini(new File("./data.ini"));
+			Ini.Section section = ini.get(sectionName);
+			String value = section.get(key);
+			return value;
+		} catch (InvalidFileFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String getBalanceFromIni(String balance, String walletType, String amount) {
+		Ini ini;
+		try {
+			ini = new Ini(new File("./data.ini"));
+			if (balance.equalsIgnoreCase("Store") && walletType.equalsIgnoreCase("retailer")) {
+				ini.put("CustomerData", "Retailer Wallet Balance", amount);
+				ini.store();
+			} else if (balance.equalsIgnoreCase("Get") && walletType.equalsIgnoreCase("retailer")) {
+				return ini.get("CustomerData", "Retailer Wallet Balance");
+			} else if (balance.equalsIgnoreCase("Store") && walletType.equalsIgnoreCase("cashout")) {
+				ini.put("CustomerData", "Cashout Wallet Balance", amount);
+				ini.store();
+			} else if (balance.equalsIgnoreCase("Get") && walletType.equalsIgnoreCase("cashout")) {
+				return ini.get("CustomerData", "Cashout Wallet Balance");
+			} else if (balance.equalsIgnoreCase("Store") && walletType.equalsIgnoreCase("merchant")) {
+				ini.put("CustomerData", "Merchant Wallet Balance", amount);
+				ini.store();
+			} else if (balance.equalsIgnoreCase("Get") && walletType.equalsIgnoreCase("merchant")) {
+				return ini.get("CustomerData", "Merchant Wallet Balance");
+			}
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public String getTodaysDate(String format) {
-
 		Format formatter = new SimpleDateFormat(format);
 		String todaysDate = formatter.format(new Date());
 		return todaysDate;
+	}
+
+	public String getTodaysDateOfMonth(int add) {
+		int day = Calendar.getInstance(TimeZone.getTimeZone("India")).get(Calendar.DAY_OF_MONTH) + add;
+		String dayOfMonth = "";
+		if (day < 10) {
+			dayOfMonth = String.valueOf("0" + day);
+		} else {
+			dayOfMonth = String.valueOf(day);
+		}
+		return dayOfMonth;
+	}
+
+	public String getTodaysMonth() {
+		int month = Calendar.getInstance(TimeZone.getTimeZone("India")).get(Calendar.MONTH) + 1;
+		String currentMonth = "";
+		if (month < 10) {
+			currentMonth = String.valueOf("0" + month);
+		} else {
+			currentMonth = String.valueOf(month);
+		}
+		return currentMonth;
 	}
 
 	public String generateRandomNumber(int number) {
@@ -1064,7 +1297,6 @@ public class JavaUtils extends LoadableComponent {
 		}
 	}
 
-	@SuppressWarnings("static-access")
 	public Map<String, String> readHeadersFromExcel(String sheetname, String headersToCall) {
 
 		Workbook wb;
@@ -1085,8 +1317,9 @@ public class JavaUtils extends LoadableComponent {
 					Row headerValueRow = sheet.getRow(currentRow.getRowNum() + 2);
 					for (int i = 0; i < (headerKeyRow.getLastCellNum() - headerKeyRow.getFirstCellNum()); i++) {
 						key = headerKeyRow.getCell(i).getStringCellValue();
-						if (headerValueRow.getCell(i).getCellType() == headerValueRow.getCell(i).CELL_TYPE_NUMERIC) {
-							headerValueRow.getCell(i).setCellType(Cell.CELL_TYPE_STRING);
+						headerValueRow.getCell(i);
+						if (headerValueRow.getCell(i).getCellType() == CellType.NUMERIC) {
+							headerValueRow.getCell(i).toString();
 						}
 						value = headerValueRow.getCell(i).getStringCellValue();
 						headers.put(key, value);
@@ -1102,9 +1335,6 @@ public class JavaUtils extends LoadableComponent {
 		} catch (EncryptedDocumentException e) {
 			Reporter.log("Unable to load headers from the excelsheet..!");
 			throw new EncryptedDocumentException("Failed due to EncryptedDocumentException" + e);
-		} catch (InvalidFormatException e) {
-			Reporter.log("Unable to load headers from the excelsheet..!");
-			throw new NullPointerException("Failed due to InvalidFormatException" + e);
 		} catch (IOException e) {
 			Reporter.log("Unable to load headers from the excelsheet..!");
 			throw new NullPointerException("Failed due to IOException" + e);
@@ -1208,8 +1438,6 @@ public class JavaUtils extends LoadableComponent {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (EncryptedDocumentException e) {
-			e.printStackTrace();
-		} catch (InvalidFormatException e) {
 			e.printStackTrace();
 		}
 	}
@@ -1520,6 +1748,52 @@ public class JavaUtils extends LoadableComponent {
 		return saltStr;
 	}
 
+	public String generateRandomEmailId() {
+		String SALTCHARS = "abcdefghijklmnopqrstuvwxyz";
+		StringBuilder salt = new StringBuilder();
+		Random rnd = new Random();
+		while (salt.length() < 8) { // length of the random string
+			int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+			salt.append(SALTCHARS.charAt(index));
+		}
+		String saltStr = salt.toString();
+		return saltStr + "@gmail.com";
+	}
+
+	public String generateRandomTermNumber() {
+		String SALTCHARS = "abcdefghijklmnopqrstuvwxyz";
+		StringBuilder salt = new StringBuilder();
+		Random rnd = new Random();
+		while (salt.length() < 10) { // length of the random string
+			int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+			salt.append(SALTCHARS.charAt(index));
+		}
+		String saltStr = salt.toString();
+		return saltStr;
+	}
+
+	public String generateRandomTxnNumber() {
+		String SALTCHARS = "1234567890";
+		StringBuilder salt = new StringBuilder();
+		Random rnd = new Random();
+		while (salt.length() < 4) { // length of the random string
+			int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+			salt.append(SALTCHARS.charAt(index));
+		}
+		String saltStr = salt.toString();
+		return saltStr;
+	}
+
+	public String generateRandomReferenceNumber() {
+		Random rand = new Random();
+		int maxF = 9, minF = 1;
+		int firstDigit = rand.nextInt((maxF - minF) + 1) + minF;
+		int maxR = 999999999, minR = 100000000;
+		int restDigits = rand.nextInt((maxR - minR) + 1) + minR;
+		String refNum = Integer.toString(firstDigit) + Integer.toString(restDigits);
+		return refNum;
+	}
+
 	public String currentDate() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate localDate = LocalDate.now();
@@ -1566,58 +1840,6 @@ public class JavaUtils extends LoadableComponent {
 		return mobileNum;
 	}
 
-	// Remove rupee symbol and comma from the string
-	public String replaceSymbols(String value) {
-		String editedElement = value.replaceAll("₹", "").replaceAll(",", "").trim();
-		return editedElement;
-	}
-
-	// Get mobile number from Ini file
-	public String mobileNumFromIni() {
-		return getLoginMobileFromIni("RetailerMobNum");
-	}
-
-	public String getWalletBalanceFromIni(String wallet, String balance) {
-		Ini ini;
-		try {
-			ini = new Ini(new File("./data.ini"));
-			if (wallet.equalsIgnoreCase("retailer")) {
-				ini.put("RetailerData", "RetailerWalletBalance", balance);
-				ini.store();
-			} else if (wallet.equalsIgnoreCase("cashout")) {
-				ini.put("RetailerData", "CashoutWalletBalance", balance);
-				ini.store();
-			} else if (wallet.equalsIgnoreCase("GetRetailer")) {
-				return ini.get("RetailerData", "RetailerWalletBalance");
-			} else if (wallet.equalsIgnoreCase("GetCashout")) {
-				return ini.get("RetailerData", "CashoutWalletBalance");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	public double roundTo2Decimals(double value) {
-		return Math.round(value * 100.0) / 100.0;
-	}
-
-	public String getWalletFromIni(String type, String wallet) {
-		Ini ini;
-		try {
-			ini = new Ini(new File("./data.ini"));
-			if (type.equalsIgnoreCase("StoreWallet")) {
-				ini.put("Wallet", "Wallet", wallet);
-				ini.store();
-			} else if (type.equalsIgnoreCase("GetWallet")) {
-				return ini.get("Wallet", "Wallet");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 	public void enter() throws AWTException {
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_ENTER);
@@ -1644,6 +1866,16 @@ public class JavaUtils extends LoadableComponent {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	// Remove rupee symbol and comma from the string
+	public String replaceSymbols(String value) {
+		String editedElement = value.replaceAll("₹", "").replaceAll(",", "").trim();
+		return editedElement;
+	}
+
+	public double roundTo2Decimals(double value) {
+		return Math.round(value * 100.0) / 100.0;
 	}
 
 	@Override

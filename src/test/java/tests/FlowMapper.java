@@ -27,7 +27,7 @@ import in.novopay.platform_ui.utils.JavaUtils;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
+//import io.appium.java_client.android.AndroidKeyCode;
 
 public class FlowMapper {
 	public AndroidDriver<MobileElement> mdriver;
@@ -113,13 +113,13 @@ public class FlowMapper {
 						}
 					}
 				} catch (InvocationTargetException d) {
-					mdriver.pressKeyCode(AndroidKeyCode.HOME);
-					mdriver.launchApp();
+//					mdriver.pressKeyCode(AndroidKeyCode.HOME);
+//					mdriver.launchApp();
 					d.printStackTrace();
 					throw d.getCause();
 				} catch (Exception e) {
-					mdriver.pressKeyCode(AndroidKeyCode.HOME);
-					mdriver.launchApp();
+//					mdriver.pressKeyCode(AndroidKeyCode.HOME);
+//					mdriver.launchApp();
 					e.printStackTrace();
 					throw e.getCause();
 				}

@@ -107,8 +107,11 @@ public class BasePage extends JavaUtils {
 			capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, dataMap.get("DEVICENAME"));
 			capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 			capabilities.setCapability(MobileCapabilityType.VERSION, dataMap.get("ANDROIDVERSION"));
-			capabilities.setCapability("appPackage", "in.novopay.merchant");
-			capabilities.setCapability("appActivity", ".ui.activities.SplashScreenActivity");
+			capabilities.setCapability("automationName", "UiAutomator1");
+//			capabilities.setCapability("appPackage", "in.novopay.merchant");
+//			capabilities.setCapability("appActivity", ".ui.activities.SplashScreenActivity");
+			capabilities.setCapability("appPackage","com.flipkart.android");
+			capabilities.setCapability("appActivity","com.flipkart.android.activity.HomeFragmentHolderActivity");
 			capabilities.setCapability("newCommandTimeout", 216000);
 			capabilities.setCapability("noReset", "true");
 			capabilities.setCapability("skipDeviceInitialization", true);
@@ -358,9 +361,6 @@ public class BasePage extends JavaUtils {
 		} catch (EncryptedDocumentException e) {
 			System.out.println("Caught EncryptedDocumentException");
 			e.printStackTrace();
-		} catch (InvalidFormatException e) {
-			System.out.println("Caught InvalidFormatException");
-			e.printStackTrace();
 		} catch (IOException e) {
 			System.out.println("Caught IOException");
 			e.printStackTrace();
@@ -589,16 +589,6 @@ public class BasePage extends JavaUtils {
 	}
 
 	/**
-	 * This method will check for next element with polling time
-	 * 
-	 * @param webElement, waitsec, pollsec
-	 */
-	public void waitandCheckfortheElement(WebElement wb, int waitsec, int pollsec) {
-		new FluentWait<WebElement>(wb).withTimeout(waitsec, TimeUnit.SECONDS).pollingEvery(pollsec, TimeUnit.SECONDS)
-				.ignoring(NoSuchElementException.class);
-	}
-
-	/**
 	 * To send keys in text box on mobile
 	 * 
 	 * @param MobileElement, value
@@ -631,7 +621,7 @@ public class BasePage extends JavaUtils {
 		waitUntilElementAppears(element);
 		element.sendKeys();
 		for (int i = 0; i < value.length(); i++) {
-			((AndroidDriver) mdriver).pressKeyCode(k.getNumKeyCode((String.valueOf((value.charAt(i))))));
+//			((AndroidDriver) mdriver).pressKeyCode(k.getNumKeyCode((String.valueOf((value.charAt(i))))));
 
 		}
 		mdriver.hideKeyboard();
@@ -649,13 +639,13 @@ public class BasePage extends JavaUtils {
 		Dimension size = mdriver.manage().window().getSize();
 		for (int i = 1; i <= 10; i++) {
 			try {
-				mdriver.swipe((int) (size.width * .85), (int) (size.height * yStart), (int) (size.width * .85),
-						(int) (size.height * yEnd), 2000);
+//				mdriver.swipe((int) (size.width * .85), (int) (size.height * yStart), (int) (size.width * .85),
+//						(int) (size.height * yEnd), 2000);
 				element.isDisplayed();
 				break;
 			} catch (Exception e) {
-				mdriver.swipe((int) (size.width * .85), (int) (size.height * yStart), (int) (size.width * .85),
-						(int) (size.height * yEnd), 2000);
+//				mdriver.swipe((int) (size.width * .85), (int) (size.height * yStart), (int) (size.width * .85),
+//						(int) (size.height * yEnd), 2000);
 			}
 		}
 	}
@@ -671,8 +661,8 @@ public class BasePage extends JavaUtils {
 		Dimension size = mdriver.manage().window().getSize();
 		for (int i = 1; i <= totalSwipes; i++) {
 			try {
-				mdriver.swipe((int) (size.width * .85), (int) (size.height * yStart), (int) (size.width * .85),
-						(int) (size.height * yEnd), 2000);
+//				mdriver.swipe((int) (size.width * .85), (int) (size.height * yStart), (int) (size.width * .85),
+//						(int) (size.height * yEnd), 2000);
 			} catch (Exception e) {
 			}
 		}
@@ -762,8 +752,8 @@ public class BasePage extends JavaUtils {
 		Dimension size = mdriver.manage().window().getSize();
 		for (int i = 1; i <= totalSwipes; i++) {
 			try {
-				mdriver.swipe((int) (size.width * xStart), (int) (size.height * .30), (int) (size.width * xEnd),
-						(int) (size.height * .30), 800);
+//				mdriver.swipe((int) (size.width * xStart), (int) (size.height * .30), (int) (size.width * xEnd),
+//						(int) (size.height * .30), 800);
 
 			} catch (Exception e) {
 			}

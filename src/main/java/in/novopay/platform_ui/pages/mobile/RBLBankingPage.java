@@ -19,7 +19,8 @@ import in.novopay.platform_ui.utils.Log;
 import in.novopay.platform_ui.utils.ServerUtils;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
@@ -241,9 +242,9 @@ public class RBLBankingPage extends BasePage {
 				}
 
 				if (usrData.get("MPIN").equalsIgnoreCase("Cancel")) {
-					mdriver.pressKeyCode(AndroidKeyCode.BACK);
+					mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 					wait.until(ExpectedConditions.elementToBeClickable(amount));
-					mdriver.pressKeyCode(AndroidKeyCode.BACK);
+					mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 					wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 					okBtn.click();
 					Log.info("Home page displayed");
@@ -530,7 +531,7 @@ public class RBLBankingPage extends BasePage {
 
 	public void dropdownSelect(Map<String, String> usrData) {
 		String dropdownXpath = "//li[contains(text(),'" + usrData.get("BANKNAME") + "')]";
-		MobileElement dropdownValue = wdriver.findElement(By.xpath(dropdownXpath));
+		WebElement dropdownValue = wdriver.findElement(By.xpath(dropdownXpath));
 		dropdownValue.click();
 	}
 
@@ -687,7 +688,7 @@ public class RBLBankingPage extends BasePage {
 		}
 		Log.info(fcmHeading.getText());
 		Log.info(fcmContent.getText());
-		mdriver.pressKeyCode(AndroidKeyCode.BACK);
+		mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}
 
 	// Verify details on success screen
@@ -802,7 +803,7 @@ public class RBLBankingPage extends BasePage {
 		}
 		Log.info(fcmHeading.getText());
 		Log.info(fcmContent.getText());
-		mdriver.pressKeyCode(AndroidKeyCode.BACK);
+		mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}
 
 	// Verify details on success screen
@@ -890,7 +891,7 @@ public class RBLBankingPage extends BasePage {
 		}
 		Log.info(fcmHeading.getText());
 		Log.info(fcmContent.getText());
-		mdriver.pressKeyCode(AndroidKeyCode.BACK);
+		mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}
 
 	public String fcmContentString(String fcm, int a, int b, int c, int d, int e, int f, int g, int h) {

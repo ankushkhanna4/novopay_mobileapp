@@ -17,7 +17,8 @@ import in.novopay.platform_ui.utils.DBUtils;
 import in.novopay.platform_ui.utils.Log;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
@@ -128,7 +129,7 @@ public class SwiggyPage extends BasePage {
 //					wait.until(ExpectedConditions.visibilityOf(toasterMsg));
 //					Assert.assertEquals(toasterMsg.getText(), "Invalid delivery boy");
 					Log.info("Invalid delivery boy");
-					mdriver.pressKeyCode(AndroidKeyCode.BACK);
+					mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 					wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 					okBtn.click();
 					Log.info("Home page displayed");
@@ -181,9 +182,9 @@ public class SwiggyPage extends BasePage {
 				}
 
 				if (usrData.get("MPINSCREENBUTTON").equalsIgnoreCase("Cancel")) {
-					mdriver.pressKeyCode(AndroidKeyCode.BACK);
+					mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 					wait.until(ExpectedConditions.elementToBeClickable(confirmExecName));
-					mdriver.pressKeyCode(AndroidKeyCode.BACK);
+					mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 					wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 					okBtn.click();
 					Log.info("Home page displayed");
@@ -270,12 +271,12 @@ public class SwiggyPage extends BasePage {
 			} else if (usrData.get("SUBMIT").equalsIgnoreCase("Clear")) {
 				clearButton.click();
 				Log.info("Clear button clicked");
-				mdriver.pressKeyCode(AndroidKeyCode.BACK);
+				mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 				wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 				okBtn.click();
 				Log.info("Home page displayed");
 			} else if (usrData.get("SUBMIT").equalsIgnoreCase("Fetch")) {
-				mdriver.pressKeyCode(AndroidKeyCode.BACK);
+				mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 				wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 				okBtn.click();
 				Log.info("Home page displayed");

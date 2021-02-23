@@ -14,7 +14,8 @@ import in.novopay.platform_ui.utils.DBUtils;
 import in.novopay.platform_ui.utils.Log;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
@@ -174,7 +175,7 @@ public class LoginPage extends BasePage {
 							if (usrData.get("OTP").equalsIgnoreCase("Invalid")) {
 								wait.until(ExpectedConditions.visibilityOf(enterPAN));
 								Log.info("OTP does not match");
-								mdriver.pressKeyCode(AndroidKeyCode.BACK);
+								mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 							} else {
 								wait.until(ExpectedConditions.visibilityOf(mobNumTextField));
 								Log.info("MPIN Changed successfully");
@@ -182,14 +183,14 @@ public class LoginPage extends BasePage {
 						} else {
 							wait.until(ExpectedConditions.visibilityOf(enterPAN));
 							Log.info("Enter MPIN doesn't match");
-							mdriver.pressKeyCode(AndroidKeyCode.BACK);
+							mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 						}
 					}
 				} else {
 					wait.until(ExpectedConditions.visibilityOf(enterPAN));
 					Log.info("incorrect poi value entered");
 					waitForSpinner();
-					mdriver.pressKeyCode(AndroidKeyCode.BACK);
+					mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 				}
 			}
 		} catch (Exception e) {
@@ -296,7 +297,7 @@ public class LoginPage extends BasePage {
 			wait.until(ExpectedConditions.elementToBeClickable(cancelOTPBtn));
 			cancelOTPBtn.click();
 			Log.info("Cancel button clicked");
-			mdriver.pressKeyCode(AndroidKeyCode.BACK);
+			mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 			wait.until(ExpectedConditions.elementToBeClickable(mobNumTextField));
 			Log.info("Login page displayed");
 		}

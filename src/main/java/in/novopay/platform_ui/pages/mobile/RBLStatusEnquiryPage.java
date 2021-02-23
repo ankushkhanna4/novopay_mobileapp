@@ -11,7 +11,8 @@ import in.novopay.platform_ui.utils.DBUtils;
 import in.novopay.platform_ui.utils.Log;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
@@ -202,17 +203,17 @@ public class RBLStatusEnquiryPage extends BasePage {
 						|| usrData.get("OTP").equalsIgnoreCase("Cancel")) {
 					if (usrData.get("STATUS").equalsIgnoreCase("To_Be_Refunded")
 							|| usrData.get("STATUS").equalsIgnoreCase("Refund")) {
-						mdriver.pressKeyCode(AndroidKeyCode.BACK);
+						mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 						wait.until(ExpectedConditions.elementToBeClickable(statusEnquiryResult));
 					}
 					if (!usrData.get("STATUS").equalsIgnoreCase("NA")) {
-						mdriver.pressKeyCode(AndroidKeyCode.BACK);
+						mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 						wait.until(ExpectedConditions.elementToBeClickable(statusEnquiryMobNum));
 					}
-					mdriver.pressKeyCode(AndroidKeyCode.BACK);
+					mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 					wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 					okBtn.click();
-					mdriver.pressKeyCode(AndroidKeyCode.BACK);
+					mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 					Log.info("Home page displayed");
 				}
 			}
@@ -457,7 +458,7 @@ public class RBLStatusEnquiryPage extends BasePage {
 		}
 		System.out.println(fcmHeading.getText());
 		System.out.println(fcmContent.getText());
-		mdriver.pressKeyCode(AndroidKeyCode.BACK);
+		mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}
 
 }

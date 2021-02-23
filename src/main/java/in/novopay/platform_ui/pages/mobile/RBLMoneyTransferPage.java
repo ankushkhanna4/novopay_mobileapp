@@ -18,7 +18,8 @@ import in.novopay.platform_ui.utils.DBUtils;
 import in.novopay.platform_ui.utils.Log;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
@@ -549,10 +550,10 @@ public class RBLMoneyTransferPage extends BasePage {
 					}
 				}
 			} else if (usrData.get("SUBMIT").equalsIgnoreCase("No")) {
-				mdriver.pressKeyCode(AndroidKeyCode.BACK);
+				mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 				wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 				okBtn.click();
-				mdriver.pressKeyCode(AndroidKeyCode.BACK);
+				mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 				Log.info("Home page displayed");
 			}
 
@@ -610,10 +611,10 @@ public class RBLMoneyTransferPage extends BasePage {
 			Log.info("OK button clicked");
 		}
 		if (!usrData.get("MPIN").equalsIgnoreCase("Valid")) {
-			mdriver.pressKeyCode(AndroidKeyCode.BACK);
+			mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 			wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 			okBtn.click();
-			mdriver.pressKeyCode(AndroidKeyCode.BACK);
+			mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 			Log.info("Home page displayed");
 		}
 	}
@@ -632,10 +633,10 @@ public class RBLMoneyTransferPage extends BasePage {
 			wait.until(ExpectedConditions.elementToBeClickable(searchBankNameTextField));
 			sendText(searchBankNameTextField, dbUtils.ifscCodeDetails(usrData.get("BENEIFSC"), "bank"));
 			Log.info("IFSC bank selected");
-			mdriver.pressKeyCode(AndroidKeyCode.BACK);
+			mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 			sendText(searchStateTextField, dbUtils.ifscCodeDetails(usrData.get("BENEIFSC"), "state"));
 			Log.info("IFSC state selected");
-			mdriver.pressKeyCode(AndroidKeyCode.BACK);
+			mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 			sendText(searchDistrictTextField, dbUtils.ifscCodeDetails(usrData.get("BENEIFSC"), "district"));
 			Log.info("IFSC district entered");
 			sendText(searchBranchTextField, dbUtils.ifscCodeDetails(usrData.get("BENEIFSC"), "branch"));
@@ -669,10 +670,10 @@ public class RBLMoneyTransferPage extends BasePage {
 
 		otpScreen(usrData);
 		if (!usrData.get("OTPSCREENBUTTON").equalsIgnoreCase("Cancel")) {
-			mdriver.pressKeyCode(AndroidKeyCode.BACK);
+			mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 			wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 			okBtn.click();
-			mdriver.pressKeyCode(AndroidKeyCode.BACK);
+			mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 			Log.info("Home page displayed");
 		}
 	}
@@ -709,9 +710,9 @@ public class RBLMoneyTransferPage extends BasePage {
 		}
 
 		if (usrData.get("MPINSCREENBUTTON").equalsIgnoreCase("Cancel")) {
-			mdriver.pressKeyCode(AndroidKeyCode.BACK);
+			mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 			wait.until(ExpectedConditions.elementToBeClickable(remitterMobileNoTextField));
-			mdriver.pressKeyCode(AndroidKeyCode.BACK);
+			mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 			wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 			okBtn.click();
 			Log.info("Home page displayed");
@@ -725,7 +726,7 @@ public class RBLMoneyTransferPage extends BasePage {
 				processInBackgroundButton.click();
 				Log.info("Process in Background button clicked");
 				Thread.sleep(2000);
-				mdriver.pressKeyCode(AndroidKeyCode.BACK);
+				mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 				Log.info("Home page displayed");
 				Thread.sleep(2000);
 			} else {
@@ -1145,10 +1146,10 @@ public class RBLMoneyTransferPage extends BasePage {
 			Assert.assertEquals(limitRemaining("", "actual"),
 					limitRemaining(getCustomerDetailsFromIni("ExistingNum"), "expected"));
 			Log.info(limitRemaining.getText());
-			mdriver.pressKeyCode(AndroidKeyCode.BACK);
+			mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 			wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 			okBtn.click();
-			mdriver.pressKeyCode(AndroidKeyCode.BACK);
+			mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 			Log.info("Home page displayed");
 		}
 	}
@@ -1162,7 +1163,7 @@ public class RBLMoneyTransferPage extends BasePage {
 					String disableQueuingURL = "https://" + getEnvURLfromIni()
 							+ ".novopay.in/portal/remittance/disable/queuing?bankcode=" + code;
 
-					mdriver.pressKeyCode(AndroidKeyCode.HOME);
+					mdriver.pressKey(new KeyEvent(AndroidKey.HOME));
 					wait.until(ExpectedConditions.elementToBeClickable(chromeApp));
 					chromeApp.click();
 					try {
@@ -1180,7 +1181,7 @@ public class RBLMoneyTransferPage extends BasePage {
 					urlSuggestion.click();
 					wait.until(ExpectedConditions.elementToBeClickable(disableText));
 					Log.info(disableText.getText());
-					mdriver.pressKeyCode(187);
+//					mdriver.pressKey(187);
 					/*
 					 * try { mdriver.findElement(By.xpath(
 					 * "//android.widget.TextView[@content-desc='Novopay Retailer']/parent::android.widget.FrameLayout"
@@ -1324,11 +1325,11 @@ public class RBLMoneyTransferPage extends BasePage {
 			cancelOTPBtn.click();
 			Log.info("Cancel button clicked");
 			if (!usrData.get("ASSERTION").equalsIgnoreCase("Refresh Button")) {
-				mdriver.pressKeyCode(AndroidKeyCode.BACK);
+				mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 				wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 				okBtn.click();
 				wait.until(ExpectedConditions.elementToBeClickable(featureTitle));
-				mdriver.pressKeyCode(AndroidKeyCode.BACK);
+				mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 				Log.info("Home page displayed");
 			}
 		}
@@ -1450,7 +1451,7 @@ public class RBLMoneyTransferPage extends BasePage {
 			System.out.println(fcmHeading.getText());
 			System.out.println(fcmContent.getText());
 		}
-		mdriver.pressKeyCode(AndroidKeyCode.BACK);
+		mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}
 
 	public String fcmContentString(String fcm, int a, int b, int c, int d, int e, int f) {

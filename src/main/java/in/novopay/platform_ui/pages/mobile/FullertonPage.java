@@ -18,7 +18,8 @@ import in.novopay.platform_ui.utils.Log;
 import in.novopay.platform_ui.utils.MongoDBUtils;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
@@ -147,7 +148,7 @@ public class FullertonPage extends BasePage {
 //					wait.until(ExpectedConditions.visibilityOf(toasterMsg));
 //					Assert.assertEquals(toasterMsg.getText(), "Employee ID not found. Please recheck employee ID");
 					Log.info("Employee ID not found. Please recheck employee ID");
-					mdriver.pressKeyCode(AndroidKeyCode.BACK);
+					mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 					wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 					okBtn.click();
 					Log.info("Home page displayed");
@@ -155,7 +156,7 @@ public class FullertonPage extends BasePage {
 //					wait.until(ExpectedConditions.visibilityOf(toasterMsg));
 //					Assert.assertEquals(toasterMsg.getText(), "You have reached maximum deposit limit for the day");
 					Log.info("You have reached maximum deposit limit for the day");
-					mdriver.pressKeyCode(AndroidKeyCode.BACK);
+					mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 					wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 					okBtn.click();
 					Log.info("Home page displayed");
@@ -194,7 +195,7 @@ public class FullertonPage extends BasePage {
 
 				if (usrData.get("ASSERTION").equalsIgnoreCase("Amount > Max")) {
 					Log.info("Amount has to be less than or equal to 10,000.00");
-					mdriver.pressKeyCode(AndroidKeyCode.BACK);
+					mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 					wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 					okBtn.click();
 					Log.info("Home page displayed");
@@ -209,9 +210,9 @@ public class FullertonPage extends BasePage {
 					}
 
 					if (usrData.get("MPINSCREENBUTTON").equalsIgnoreCase("Cancel")) {
-						mdriver.pressKeyCode(AndroidKeyCode.BACK);
+						mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 						wait.until(ExpectedConditions.elementToBeClickable(fetchedAmount));
-						mdriver.pressKeyCode(AndroidKeyCode.BACK);
+						mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 						wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 						okBtn.click();
 						Log.info("Home page displayed");
@@ -301,12 +302,12 @@ public class FullertonPage extends BasePage {
 			} else if (usrData.get("SUBMIT").equalsIgnoreCase("Clear")) {
 				clearButton.click();
 				Log.info("Clear button clicked");
-				mdriver.pressKeyCode(AndroidKeyCode.BACK);
+				mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 				wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 				okBtn.click();
 				Log.info("Home page displayed");
 			} else if (usrData.get("SUBMIT").equalsIgnoreCase("Fetch")) {
-				mdriver.pressKeyCode(AndroidKeyCode.BACK);
+				mdriver.pressKey(new KeyEvent(AndroidKey.BACK));
 				wait.until(ExpectedConditions.elementToBeClickable(okBtn));
 				okBtn.click();
 				Log.info("Home page displayed");
