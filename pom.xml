@@ -15,7 +15,7 @@
 		<surefire.version>3.0.0-M5</surefire.version>
 		<poi.version>4.1.2</poi.version>
 		<testng.version>7.3.0</testng.version>
-		<mysqlconnector.version>8.0.22</mysqlconnector.version>
+		<mysqlconnector.version>8.0.28</mysqlconnector.version>
 		<selenium.version>3.141.59</selenium.version>
 		<appium-javaclient.version>7.4.1</appium-javaclient.version>
 		<java-mail.version>1.6.2</java-mail.version>
